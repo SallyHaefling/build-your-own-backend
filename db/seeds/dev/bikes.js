@@ -31,8 +31,7 @@ exports.seed = (knex, Promise) => {
 
 const createBike = (knex, bike) => {
   return knex('bikes').insert({
-    country: 'CA',
-    name: 'CoolestBike'
+    name: bike.bikes
   }, 'id')
   .then(bikeId => {
     let countryPromises = [];
