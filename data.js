@@ -16,7 +16,7 @@
   id: "metropolradruhr-duisburg",
   city: "Duisburg",
   country: "CA",
-  bikes: ["metropolradruhr I", "metropolradruhr II", "metropolradruhr III", "metropolradruhr pro", "Mi Muovo in Bici I"]
+  bikes: ["metropolradruhr I", "metropolradruhr II", "metropolradruhr pro", "Mi Muovo in Bici I"]
   },
   {
   id: "rimini",

@@ -11,7 +11,6 @@
 const bikeData = require('../../../data.js');
 
 const createCountry = (knex, country) => {
-  //getting back error: insert into "countries" ("bike", "bike_id") values ($1, $2) - value too long for type character varying(255)
   return knex('countries').insert(country);
 };
 
