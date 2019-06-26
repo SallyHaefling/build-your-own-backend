@@ -4,7 +4,7 @@ const database = require('knex')(configuration);
 //require database
 const express = require('express');
 //not sure if this is working below
-const data = require('data');
+// const data = require('data');
 const app = express();
 const port = 3000;
 
