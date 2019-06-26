@@ -11,12 +11,40 @@ app.listen(app.get('port'), () => console.log(`App is running 😃 on port ${app
 
 app.get('/api/v1/bikes', (request, response) => {
   database('bikes').select()
-  .then((bikes) => {
-    response.status(200).json(bikes);
+  .then(bikes => {
+    return response.status(200).json(bikes);
   })
-  .catch((error) => {
-    response.status(500).json({ error });
+  .catch(error => {
+    return response.status(500).json({ error });
   })
+});
+
+app.get('/api/v1/bikes/:id', (request, response) => {
+  database('bikes').where('id', request.params.id).select()
+    .then(bike => {
+      if (bike.length) {
+        return response.status(200).json(bike);
+      } else {
+        return response.status(404).json({ error: `Could not find bike with id: ${request.params.id}` });  
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    });
+});
+
+app.get('/api/v1/countries/:id', (request, response) => {
+  database('countries').where('id', request.params.id).select()
+    .then(country => {
+      if (country.length) {
+        return response.status(200).json(country);
+      } else {
+        return response.status(404).json({ error: `Could not find country with id: ${request.params.id}` })
+      }
+    })
+    .catch(error => {
+      return response.status(500).json({ error });
+    });
 });
 
 app.get('/api/v1/countries', (request, response) => {
@@ -39,7 +67,6 @@ app.post('/api/v1/bikes', (request, response) => {
         .send({ error: `Expected format: { country: <String>, name: <String> }. You're missing a "${requiredParameter}" property.` });
     }
   }
-
   database('bikes').insert(bike, 'id')
     .then(bike => {
       response.status(201).json({ id: bike[0] })
@@ -48,3 +75,22 @@ app.post('/api/v1/bikes', (request, response) => {
       response.status(500).json({ error });
     });
 });
+
+// app.post('/api/v1/countries', (request, response) => {
+//   const country = request.body;
+
+//   for(let requiredParameter of ['bike_id', 'country']) {
+//     if(!country[requiredParameter]) {
+//       return response
+//         .status(422)
+//         .send({ error: `Expected format: { country: <String>, bike_id: <Integer> }. You're missing a "${requiredParameter}" property.` });
+//     }
+//   }
+//   database('countries').insert(country, 'id')
+//   .then(country => {
+//     response.status(201).json( { id: country[0] })
+//   })
+//   .catch(error => {
+//     response.status(500).json({ error });
+//   });
+// });
