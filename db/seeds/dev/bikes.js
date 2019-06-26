@@ -13,9 +13,10 @@ exports.seed = function(knex, Promise) {
       }, 'id')
 
       .then(bike => {
-        return knex('bikes').insert([
-          {bike: 'New Bike', bike_id: bike[0]},
-          {bike: 'Newer Cooler Bike', bike_id: bike[0]}
+        return knex('countries').insert([
+          {bike: 'NewBike', bike_id: bike[0]},
+          {bike: 'CoolestBike', bike_id: bike[1]},
+          {bike: 'ExtremeBike', bike_id: bike[2]}
         ])
       })
       .then(() => console.log('Seeding complete!'))
