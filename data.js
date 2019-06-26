@@ -1,4 +1,3 @@
-  //clean data: make array of bikes in each object that has the bikes for that country instead
   const bikeData = [
   {
   id: "norisbike-nurnberg",
