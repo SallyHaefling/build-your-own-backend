@@ -33,6 +33,16 @@ app.get('/api/v1/bikes/:id', (request, response) => {
     });
 });
 
+app.get('/api/v1/countries', (request, response) => {
+  database('countries').select()
+  .then((countries) => {
+    response.status(200).json(countries);
+  })
+  .catch((error) => {
+    response.status(500).json({ error });
+  })
+});
+
 app.get('/api/v1/countries/:id', (request, response) => {
   database('countries').where('id', request.params.id).select()
     .then(country => {
@@ -47,50 +57,60 @@ app.get('/api/v1/countries/:id', (request, response) => {
     });
 });
 
-app.get('/api/v1/countries', (request, response) => {
-  database('countries').select()
-  .then((countries) => {
-    response.status(200).json(countries);
-  })
-  .catch((error) => {
-    response.status(500).json({ error });
-  })
-});
-
 app.post('/api/v1/bikes', (request, response) => {
   const bike = request.body;
-
   for (let requiredParameter of ['country', 'name']) {
     if (!bike[requiredParameter]) {
-      return response
-        .status(422)
-        .send({ error: `Expected format: { country: <String>, name: <String> }. You're missing a "${requiredParameter}" property.` });
+      return response.status(422).send({ error: 
+        `Expected format: { 
+          country: <String>, name: <String>
+          }. You're missing a "${requiredParameter}" property.`
+        }
+      );
     }
   }
+
   database('bikes').insert(bike, 'id')
     .then(bike => {
-      response.status(201).json({ id: bike[0] })
+      response.status(201).json({ id: bike[0] });
     })
     .catch(error => {
       response.status(500).json({ error });
     });
 });
 
-// app.post('/api/v1/countries', (request, response) => {
-//   const country = request.body;
+app.post('/api/v1/countries', (request, response) => {
+  const country = request.body;
+  for(let requiredParameter of ['country', 'bike_id']) {
+    if (!country[requiredParameter]) {
+      return response.status(422).send({ error: 
+        `Expected format: {
+          country: <String>, bike_id: <Integer>
+          }. You're missing a "${requiredParameter}" property.`
+        }
+      );
+    }
+  }
 
-//   for(let requiredParameter of ['bike_id', 'country']) {
-//     if(!country[requiredParameter]) {
-//       return response
-//         .status(422)
-//         .send({ error: `Expected format: { country: <String>, bike_id: <Integer> }. You're missing a "${requiredParameter}" property.` });
-//     }
-//   }
-//   database('countries').insert(country, 'id')
-//   .then(country => {
-//     response.status(201).json( { id: country[0] })
-//   })
-//   .catch(error => {
-//     response.status(500).json({ error });
-//   });
-// });
+  let bikeFound = false;
+  database('bikes').select()
+    .then(bikeData => {
+      bikeData.forEach(bike => {
+        if (bike.id === parseInt(country.bike_id)) {
+          bikeFound = true;
+        }
+      });
+      if (!bikeFound) {
+        return response.status(422).json(
+          `Cannot add a country without a bike. No bike exists with an id of: ${country.bike_id}`
+        );
+      }
+      database('countries').insert(country, 'id')
+        .then(country=> {
+          response.status(201).json({ id: country[0] });
+        })
+        .catch(error => {
+          response.status(500).json({ error })
+        });
+    })
+});
