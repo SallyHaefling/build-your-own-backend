@@ -3,13 +3,15 @@ const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 //require database
 const express = require('express');
+//not sure if this is working below
+const data = require('data');
 const app = express();
 const port = 3000;
 
 app.use(express.json())
 
 app.listen(3000, () => {
-  console.log(`App is running 😭 on port ${port}`);
+  console.log(`App is running 😃 on port ${port}`);
 });
 
 //this below creates the new api path
