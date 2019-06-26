@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('countries', function(table) {
       table.increments('id').primary();
-      table.string('bike', 100000);
+      table.string('country');
       table.integer('bike_id').unsigned()
       table.foreign('bike_id')
       .references('bike_id');

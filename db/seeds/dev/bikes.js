@@ -40,7 +40,7 @@ const createBike = (knex, bike) => {
     bikeData.forEach(country => {
       countryPromises.push(
         createCountry(knex, {
-          bike: country,
+          country: country.country,
           bike_id: bikeId[0]
         })
       )
