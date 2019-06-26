@@ -78,3 +78,39 @@ app.post('/api/v1/bikes', (request, response) => {
       response.status(500).json({ error });
     });
 });
+
+app.post('/api/v1/countries', (request, response) => {
+  const country = request.body;
+  for(let requiredParameter of ['country', 'bike_id']) {
+    if (!country[requiredParameter]) {
+      return response.status(422).send({ error: 
+        `Expected format: {
+          country: <String>, bike_id: <Integer>
+          }. You're missing a "${requiredParameter}" property.`
+        }
+      );
+    }
+  }
+
+  let bikeFound = false;
+  database('bikes').select()
+    .then(bikeData => {
+      bikeData.forEach(bike => {
+        if (bike.id === parseInt(country.bike_id)) {
+          bikeFound = true;
+        }
+      });
+      if (!bikeFound) {
+        return response.status(422).json(
+          `Cannot add a country without a bike. No bike exists with an id of: ${country.bike_id}`
+        );
+      }
+      database('countries').insert(country, 'id')
+        .then(country=> {
+          response.status(201).json({ id: country[0] });
+        })
+        .catch(error => {
+          response.status(500).json({ error })
+        });
+    })
+});
