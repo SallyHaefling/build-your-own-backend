@@ -101,4 +101,19 @@ app.post('/api/v1/bikes', (request, response) => {
         });
     });
     
+    app.delete('/api/v1/countries/:id', (request, response) => {
+      database('countries').where('id', request.params.id).del()
+        .then(result => {
+          if (result > 0) {
+            response.status(200).json(`Deleted country '${request.body.country}' with id ${request.params.id}`)
+          } else {
+            response.status(404).json({
+              error: `Could not find country with an id: ${request.params.id}`
+            })
+          }
+        })
+        .catch(error => {
+          response.status(500).json({ error })
+        });
+    });
 
