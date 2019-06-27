@@ -57,92 +57,48 @@ app.get('/api/v1/countries/:id', (request, response) => {
     });
 });
 
-app.post('/api/v1/bikes', (request, response) => {
-  const bike = request.body;
-  for (let requiredParameter of ['country', 'name']) {
-    if (!bike[requiredParameter]) {
+app.post('/api/v1/countries', (request, response) => {
+  const country = request.body;
+  for (let requiredParameter of ['country', 'city']) {
+    if (!country[requiredParameter] && !country[requiredParameter] === '') {
       return response.status(422).send({ error: 
         `Expected format: { 
-          country: <String>, name: <String>
+          country: <String>, city: <String>
           }. You're missing a "${requiredParameter}" property.`
         }
       );
     }
   }
 
-  database('bikes').insert(bike, 'id')
-    .then(bike => {
-      response.status(201).json({ id: bike[0] });
+  database('countries').insert(country, 'id')
+    .then(country => {
+      response.status(201).json({ id: country[0] });
     })
     .catch(error => {
       response.status(500).json({ error });
     });
 });
 
-app.post('/api/v1/countries', (request, response) => {
-  const country = request.body;
-  for(let requiredParameter of ['country', 'bike_id']) {
-    if (!country[requiredParameter]) {
+app.post('/api/v1/bikes', (request, response) => {
+  const bike = request.body;
+  console.log(bike)
+  for(let requiredParameter of ['bike_name', 'country_id']) {
+    if (!bike[requiredParameter] && !bike[requiredParameter] === '') {
       return response.status(422).send({ error: 
         `Expected format: {
-          country: <String>, bike_id: <Integer>
+          country: <String>, country_id: <Integer>
           }. You're missing a "${requiredParameter}" property.`
         }
       );
     }
   }
-
-  let bikeFound = false;
-  database('bikes').select()
-    .then(bikeData => {
-      bikeData.forEach(bike => {
-        if (bike.id === parseInt(country.bike_id)) {
-          bikeFound = true;
-        }
-      });
-      if (!bikeFound) {
-        return response.status(422).json(
-          `Cannot add a country without a bike. No bike exists with an id of: ${country.bike_id}`
-        );
-      }
-      database('countries').insert(country, 'id')
-        .then(country=> {
-          response.status(201).json({ id: country[0] });
+      database('bikes').insert(bike, 'id')
+        .then(bike => {
+          response.status(201).json({ id: bike[0] });
         })
         .catch(error => {
           response.status(500).json({ error })
         });
-    })
-});
-
-app.delete('/api/v1/bikes/:id', (request, response) => {
-  database('bikes').where('id', request.params.id).del()
-    .then(result => {
-      if (result > 0) {
-        response.status(200).json(`Deleted bike '${request.body.name}' with id ${request.params.id}`)
-      } else {
-        response.status(404).json({
-          error: `Could not find bike with an id: ${request.params.id}`
-        })
-      }
-    })
-    .catch(error => {
-      response.status(500).json({ error })
     });
-});
+    
 
-app.delete('api/v1/countries/:id', (request, response) => {
-  database('countries').where('id', request.params.bike_id).del()
-    .then(result => {
-      if (result > 0) {
-        response.status(200).json(`Deleted country '${request.body.country}' with id ${request.params.bike_id}`)
-      } else {
-        response.status(404).json({
-          error: `Could not find a country with an id: ${request.params.bike_id}`
-        })
-      }
-    })
-    .catch(error => {
-      response.status(500).json({ error })
-    });
-});
