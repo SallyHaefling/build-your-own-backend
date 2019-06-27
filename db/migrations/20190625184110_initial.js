@@ -13,8 +13,8 @@ exports.up = function(knex, Promise) {
       table.string('country');
       table.integer('bike_id').unsigned()
       table.foreign('bike_id')
-      .references('bike_id');
-
+      .references('bikes.id');
+//^^trying to link foreign key with primary key
       table.timestamps(true, true)
     })
   ])

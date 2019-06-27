@@ -131,18 +131,18 @@ app.delete('/api/v1/bikes/:id', (request, response) => {
     });
 });
 
-app.delete('api/v1/countries/:id', (request, response) => {
-  database('countries').where('id', request.params.bike_id).del()
-    .then(result => {
-      if (result > 0) {
-        response.status(200).json(`Deleted country '${request.body.country}' with id ${request.params.bike_id}`)
-      } else {
-        response.status(404).json({
-          error: `Could not find a country with an id: ${request.params.bike_id}`
-        })
-      }
-    })
-    .catch(error => {
-      response.status(500).json({ error })
-    });
-});
+// app.delete('api/v1/countries/:id', (request, response) => {
+//   database('countries').where('id', request.params.bike_id).del()
+//     .then(result => {
+//       if (result > 0) {
+//         response.status(200).json(`Deleted country '${request.body.country}' with id ${request.params.bike_id}`)
+//       } else {
+//         response.status(404).json({
+//           error: `Could not find a country with an id: ${request.params.bike_id}`
+//         })
+//       }
+//     })
+//     .catch(error => {
+//       response.status(500).json({ error })
+//     });
+// });
