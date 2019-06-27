@@ -108,7 +108,7 @@ app.post('/api/v1/bikes', (request, response) => {
             response.status(200).json(`Deleted country '${request.body.country}' with id ${request.params.id}`)
           } else {
             response.status(404).json({
-              error: `Could not find bike with an id: ${request.params.id}`
+              error: `Could not find country with an id: ${request.params.id}`
             })
           }
         })
