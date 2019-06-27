@@ -1,42 +1,42 @@
 const bikeData = require('../../../data.js');
 
-const createCountry = (knex, country) => {
-  return knex('countries').insert(country);
+const createBike = (knex, bike) => {
+  return knex('bikes').insert(bike);
 };
 
 exports.seed = (knex, Promise) => {
-  return knex('countries').del()
-  .then(() => knex('bikes').del())
+  return knex('bikes').del()
+  .then(() => knex('countries').del())
   .then(() => {
-    let bikePromises = [];
+    let countryPromises = [];
 
-    bikeData.forEach(bike => {
-      bikePromises.push(createBike(knex, bike));
+    bikeData.forEach(country => {
+      countryPromises.push(createCountry(knex, country));
     });
 
-    return Promise.all(bikePromises);
+    return Promise.all(countryPromises);
   })
   .catch(error => console.log(`Error seeding data: ${error}`));
 };
 
-const createBike = (knex, bike) => {
-  return knex('bikes').insert({
-    name: bike.bikes,
-    country: bike.country
+const createCountry = (knex, country) => {
+  return knex('countries').insert({
+    city: country.bikes,
+    country: country.country
   }, 'id')
-  .then(bikeId => {
-    let countryPromises = [];
+  .then(countryId => {
+    let bikePromises = [];
 
-    bikeData.forEach(country => {
-      countryPromises.push(
-        createCountry(knex, {
-          country: country.country,
-          bike_id: bikeId[0]
+    bikeData.forEach(bike => {
+      bikePromises.push(
+        createBike(knex, {
+          bike_name: bike.bikes,
+          country_id: countryId[0]
         })
       )
     });
 
-    return Promise.all(countryPromises);
+    return Promise.all(bikePromises);
   })
 };
 
