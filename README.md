@@ -1,6 +1,6 @@
 # Build-Your-Own-Backend
 
-##### Heroku deployment: [https://sh-build-your-own-backend.herokuapp.com/api/v1/countries] (https://sh-build-your-own-backend.herokuapp.com/api/v1/countries)
+Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.herokuapp.com/api/v1/countries)
 
 ## Countries
 
@@ -10,7 +10,7 @@
 
 #### Status OK
 
-#### Link: [http://localhost:3000/api/v1/countries]
+#### Link: http://localhost:3000/api/v1/countries
 
 `[
 
@@ -51,7 +51,7 @@
 
 #### Status OK
 
-#### Link: [http://localhost:3000/api/v1/countries/17]
+#### Link: http://localhost:3000/api/v1/countries/17
 
 `[
     {
@@ -68,7 +68,7 @@
 
 #### Status 404 Not found
 
-#### Link: [http://localhost:3000/api/v1/countries/17567]
+#### Link: http://localhost:3000/api/v1/countries/17567
 
 `{
     "error": "Could not find country with id: 17567"
@@ -83,7 +83,7 @@
 
 #### Status OK
 
-#### Link: [http://localhost:3000/api/v1/bikes]
+#### Link: http://localhost:3000/api/v1/bikes
 
 `[
 
@@ -124,7 +124,7 @@
 
 #### Status OK
 
-#### Link: [http://localhost:3000/api/v1/bikes/86]
+#### Link: http://localhost:3000/api/v1/bikes/86
 
 `[
 
@@ -149,7 +149,7 @@
 
 #### Status 404 Not found
 
-#### Link: [http://localhost:3000/api/v1/bikes/999]
+#### Link: http://localhost:3000/api/v1/bikes/999
 
 `{
     "error": "Could not find bike with id: 999"
@@ -160,7 +160,7 @@
 
 ### POST /api/v1/countries
 
-#### Link: [http://localhost:3000/api/v1/countries]
+#### Link: http://localhost:3000/api/v1/countries
 
 #### Required Parameters:
 
@@ -188,7 +188,7 @@
 
 ### POST /api/v1/bikes
 
-#### Link: [http://localhost:3000/api/v1/bikes]
+#### Link: http://localhost:3000/api/v1/bikes
 
 #### Required Parameters:
 
@@ -220,7 +220,7 @@
 
 #### Status 200 OK
 
-#### Link: [http://localhost:3000/api/v1/countries/60]
+#### Link: http://localhost:3000/api/v1/countries/60
 
 `"Deleted country 'TT' with id 60"`
 
@@ -228,7 +228,7 @@
 
 #### Status 404 Not found
 
-#### Link: [http://localhost:3000/api/v1/countries/60989]
+#### Link: http://localhost:3000/api/v1/countries/60989
 
 `{
 
