@@ -10,7 +10,7 @@
 
 #### Link: [http://localhost:3000/api/v1/countries]
 
-```[
+`[
     {
         "id": 227,
         "country": "AT",
@@ -32,7 +32,8 @@
         "created_at": "2019-06-26T17:33:44.317Z",
         "updated_at": "2019-06-26T17:33:44.317Z"
     }
-   ] ```
+   ] 
+   `
    
    ### GET /api/v1/countries/:id
 
@@ -42,7 +43,7 @@
 
 #### Link: [http://localhost:3000/api/v1/countries/]
 
-```[
+`[
     {
         "id": 17,
         "country": "DE",
@@ -50,15 +51,16 @@
         "created_at": "2019-06-27T18:38:10.353Z",
         "updated_at": "2019-06-27T18:38:10.353Z"
     }
-]```
+]
+`
 
 #### Status 404 Not found
 
 #### Link: [http://localhost:3000/api/v1/countries/17567]
 
-```{
+`{
     "error": "Could not find country with id: 17567"
-}```
+}`
 
 
 
