@@ -60,9 +60,8 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 ```
 {  
     "error": "Could not find country with id: 17567"  
-} . 
+}  
 ```
-
 
 ## Bikes
 
@@ -151,7 +150,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 #### Status 201 Created
 
 ```
-{ .  
+{   
 "id": 34   
 }
 ```
