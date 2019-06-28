@@ -10,7 +10,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status OK
 
-#### `Link: http://localhost:3000/api/v1/countries`
+#### Link: `http://localhost:3000/api/v1/countries`
 
 ```
 [  
@@ -37,7 +37,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status OK
 
-#### `Link: http://localhost:3000/api/v1/countries/17`
+#### Link: `http://localhost:3000/api/v1/countries/17`
 
 ```
 [
@@ -55,7 +55,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status 404 Not found
 
-#### `Link: http://localhost:3000/api/v1/countries/17567`
+#### Link: `http://localhost:3000/api/v1/countries/17567`
 
 ```
 {  
@@ -71,7 +71,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status OK
 
-#### `Link: http://localhost:3000/api/v1/bikes`
+#### Link: `http://localhost:3000/api/v1/bikes`
 
 ```
 [  
@@ -98,7 +98,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status OK
 
-#### `Link: http://localhost:3000/api/v1/bikes/86`
+#### Link: `http://localhost:3000/api/v1/bikes/86`
 
 ```
 [  
@@ -116,7 +116,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status 404 Not found
 
-#### `Link: http://localhost:3000/api/v1/bikes/999`
+#### Link: `http://localhost:3000/api/v1/bikes/999`
 
 ```
 {  
@@ -128,7 +128,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 ### POST /api/v1/countries
 
-#### `Link: http://localhost:3000/api/v1/countries`
+#### Link: `http://localhost:3000/api/v1/countries`
 
 #### Required Parameters:
 
@@ -159,7 +159,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 ### POST /api/v1/bikes
 
-#### `Link: http://localhost:3000/api/v1/bikes`
+#### Link: `http://localhost:3000/api/v1/bikes`
 
 #### Required Parameters:
 
@@ -195,7 +195,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status 200 OK
 
-#### `Link: http://localhost:3000/api/v1/countries/60`
+#### Link: `http://localhost:3000/api/v1/countries/60`
 
 ```
 "Deleted country 'TT' with id 60"
@@ -205,7 +205,7 @@ Heroku deployment: [build-your-own-backend](https://sh-build-your-own-backend.he
 
 #### Status 404 Not found
 
-#### Link: http://localhost:3000/api/v1/countries/60989
+#### Link: `http://localhost:3000/api/v1/countries/60989`
 
 ```
 {  
